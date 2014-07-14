@@ -4,6 +4,8 @@ machine:
 deployment:
   production:
     branch: master
+    heroku:
+      appname: oac-trip-calendar
     commands:
-      - git push git@heroku.com:oac-trip-calendar.git master
-      - heroku run rake db:migrate db:seed
+#      - git push git@heroku.com:oac-trip-calendar.git master
+      - heroku run rake db:migrate db:seed --app oac-trip-calendar
