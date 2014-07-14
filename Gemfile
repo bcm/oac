@@ -32,3 +32,7 @@ group :development, :test do
   gem 'selenium-webdriver', '~> 2.42.0'
   gem 'spring-commands-rspec', '~> 1.0.2'
 end
+
+group :production do
+  gem 'rails_12factor', '~> 0.0.2'
+end
