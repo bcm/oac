@@ -1,0 +1,9 @@
+machine:
+  timezone: America/Los_Angeles
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - git push git@heroku.com:oac-trip-calendar.git master
+      - heroku run rake db:migrate db:seed
