@@ -1,5 +1,6 @@
-PATH
-  remote: ../bootstrap_calendar_rails
+GIT
+  remote: git://github.com/bcm/bootstrap_calendar_rails.git
+  revision: 1e98567e5d68af0f725f6433cc4315bb6892dcd4
   specs:
     bootstrap_calendar_rails (0.0.2)
       rails (>= 3)
