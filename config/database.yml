@@ -1,0 +1,15 @@
+development:
+    adapter: postgresql
+    database: oac_development
+    host: localhost
+    username: oac
+    pool: 5
+    timeout: 5000
+
+test:
+  adapter: postgresql
+  database: oac_test
+  host: localhost
+  username: oac
+  pool: 5
+  timeout: 5000

@@ -1,0 +1,15 @@
+oac-start-services() {
+  brew services start postgres
+}
+
+oac-stop-services() {
+  brew services stop postgres
+}
+
+oac-dump-db() {
+  pg_dump -Fc --no-acl --no-owner -h localhost -U oac oac_development > oac_development.dump
+}
+
+oac-restore-db() {
+  pg_restore --verbose --clean --no-acl --no-owner -h localhost -U oac -d oac_development $1
+}
