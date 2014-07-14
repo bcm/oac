@@ -3,9 +3,22 @@
   <p>Browse and subscribe to the trip calendar for great justice</p>
 </div>
 
-<%= bootstrap_calendar Date.today do |date| %>
+<%= bootstrap_calendar @date do |date| %>
   <%= content_tag :span, class: "pull-right", "data-cal-date" => "some", "data-cal-view" => "day" do %>
     <%= date.day %>
+  <% end %>
+  <% if @trips[date].any? %>
+    <ul class="list-unstyled">
+      <% @trips[date].each do |trip| %>
+        <li>
+          <%= button_tag class: 'btn btn-link', data: {toggle: 'popover', trigger: 'focus', container: 'body',
+                                                       content: trip_popover_content(trip), html: true,
+                                                       placement: 'auto'} do %>
+            <%= truncate(trip.shortname, length: 10) %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
 <% end %>
 
