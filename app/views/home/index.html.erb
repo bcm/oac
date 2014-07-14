@@ -16,6 +16,19 @@
   <% end %>
 <% end %>
 
+<div class="text-center">
+  <div class="btn-group calendar-tools">
+    <%= link_to calendar_path(format: :ics), class: 'btn btn-default' do %>
+      <%= fa_icon 'calendar' %> Subscribe to calendar
+    <% end %>
+    <!--
+    <%= link_to '#', class: 'btn btn-default' do %>
+      <%= fa_icon 'rss' %> Add to feed reader
+    <% end %>
+  -->
+  </div>
+</div>
+
 <footer>
   <p>All content courtesy of <%= link_to 'Outdoor Adventure Club, LLC', 'http://outdooradventureclub.com/' %>. Questions about trips or the club itself? <%= mail_to 'info@outdooradventureclub.com' %>. About this site? <%= mail_to 'bcm@maz.org' %>.</p>
 </footer>

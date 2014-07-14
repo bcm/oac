@@ -25,7 +25,7 @@ module TripsHelper
     out << content_tag(:span, trip_period(trip), class: 'trip-period')
     out << tag(:br)
     out << link_to(trip.url, target: 'oac') do
-      raw('More details ' + fa_icon('external-link'))
+      raw('Details and signup ' + fa_icon('external-link'))
     end
     out << content_tag(:span, class: 'pull-right') do
       content_tag(:span, trip_category(trip), class: "label label-#{trip.category}")

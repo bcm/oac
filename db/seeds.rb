@@ -71,6 +71,7 @@ trips = [
 
 trips.each do |spec|
   Trip.find_or_create_by!(spec[:key]) do |trip|
-    trip.assign_attributes(attrs)
+    trip.assign_attributes(spec[:attrs])
+    trip.uuid ||= SecureRandom.uuid
   end
 end

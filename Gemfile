@@ -7,6 +7,7 @@ gem 'bootstrap_calendar_rails', '~> 0.0.2', github: 'bcm/bootstrap_calendar_rail
 #gem 'bootstrap_calendar_rails', '~> 0.0.2', path: '../bootstrap_calendar_rails'
 gem 'coffee-rails', '~> 4.0.1'
 gem 'font-awesome-rails', '~> 4.1.0.0'
+gem 'icalendar', '~> 2.1.0'
 gem 'jquery-rails', '~> 3.1.1'
 gem 'less-rails', '~> 2.5.0'
 gem 'less-rails-bootstrap', '~> 3.2.0'
