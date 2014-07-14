@@ -18,9 +18,14 @@
 
 <div class="text-center">
   <div class="btn-group calendar-tools">
-    <%= link_to calendar_path(format: :ics), class: 'btn btn-default' do %>
-      <%= fa_icon 'calendar' %> Subscribe to calendar
+    <%= button_tag class: 'btn btn-default dropdown-toggle', data: {toggle: 'dropdown'} do %>
+      <%= fa_icon 'calendar' %> Subscribe to calendar <span class="caret"></span>
     <% end %>
+    <ul class="dropdown-menu">
+      <li><%= link_to 'Microsoft Outlook', calendar_url(format: :ics, protocol: 'webcal') %></li>
+      <li><%= link_to 'Apple iCal', calendar_url(format: :ics, protocol: 'webcal') %></li>
+      <li><%= link_to 'Google Calendar', "http://www.google.com/calendar/render?cid=#{uri_escape_url calendar_url(format: :ics)}" %></li>
+    </ul>
     <!--
     <%= link_to '#', class: 'btn btn-default' do %>
       <%= fa_icon 'rss' %> Add to feed reader
