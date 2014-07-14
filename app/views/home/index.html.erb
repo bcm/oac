@@ -10,13 +10,7 @@
   <% if @trips[date].any? %>
     <ul class="list-unstyled">
       <% @trips[date].each do |trip| %>
-        <li>
-          <%= button_tag class: 'btn btn-link', data: {toggle: 'popover', trigger: 'focus', container: 'body',
-                                                       content: trip_popover_content(trip), html: true,
-                                                       placement: 'auto'} do %>
-            <%= truncate(trip.shortname, length: 10) %>
-          <% end %>
-        </li>
+        <li><%= trip_button trip %></li>
       <% end %>
     </ul>
   <% end %>
