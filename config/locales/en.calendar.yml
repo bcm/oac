@@ -1,0 +1,18 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  Monday: "Monday"
+  Mon: "Mon"
+  Tuesday: "Tuesday"
+  Tues: "Tues"
+  Wednesday: "Wednesday"
+  Wed: "Wed"
+  Thursday: "Thursday"
+  Thur: "Thur"
+  Friday: "Friday"
+  Fri: "Fri"
+  Saturday: "Saturday"
+  Sat: "Sat"
+  Sunday: "Sunday"
+  Sun: "Sun"

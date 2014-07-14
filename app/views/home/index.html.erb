@@ -2,3 +2,13 @@
   <h1>Outdoor Adventure Club<br>Trip Calendar</h1>
   <p>Browse and subscribe to the trip calendar for great justice</p>
 </div>
+
+<%= bootstrap_calendar Date.today do |date| %>
+  <%= content_tag :span, class: "pull-right", "data-cal-date" => "some", "data-cal-view" => "day" do %>
+    <%= date.day %>
+  <% end %>
+<% end %>
+
+<footer>
+  <p>All content courtesy of <%= link_to 'Outdoor Adventure Club, LLC', 'http://outdooradventureclub.com/' %>. Questions about trips or the club itself? <%= mail_to 'info@outdooradventureclub.com' %>. About this site? <%= mail_to 'bcm@maz.org' %>.</p>
+</footer>
