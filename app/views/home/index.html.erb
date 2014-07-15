@@ -1,7 +1,24 @@
-<div class="jumbotron">
-  <h1>Outdoor Adventure Club<br>Trip Calendar</h1>
-  <p>Browse and subscribe to the trip calendar for great justice</p>
+<div class="well">
+  <h1>Outdoor Adventure Club Trip Calendar</h1>
 </div>
+
+<div class="pull-right">
+  <ul class="calendar-pager pager">
+    <li>
+      <%= link_to fa_icon('chevron-left'),
+                  home_dated_path(year: @prev_date.year, mon: sprintf("%02d", @prev_date.mon)) %>
+    </li>
+    <li><%= link_to 'Today', root_path %></li>
+    <li>
+      <%= link_to fa_icon('chevron-right'),
+                  home_dated_path(year: @next_date.year, mon: sprintf("%02d", @next_date.mon)) %>
+    </li>
+  </ul>
+</div>
+
+<div class="calendar-title"><%= @date.strftime "%B %Y" %></div>
+
+<div class="clearfix"></div>
 
 <%= bootstrap_calendar @date do |date| %>
   <%= content_tag :span, class: "pull-right", "data-cal-date" => "some", "data-cal-view" => "day" do %>
