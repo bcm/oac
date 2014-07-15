@@ -1,17 +1,23 @@
 require 'addressable/uri'
 require 'atom'
+require 'nokogiri'
 
 class FeedController < ApplicationController
   respond_to :atom
 
   def show
-    trips = Trip.order(starts_on: :desc).order(ends_on: :desc).page(params[:page]).per(params[:per])
+    trips = Trip.order(starts_on: :desc).order(ends_on: :desc).order(name: :asc).page(params[:page]).per(params[:per])
     feed = FeedBuilder.new(trips, params.slice(:page, :per)).build
     respond_with(OpenStruct.new(feed: feed, trips: trips))
   end
 
   class FeedBuilder < Struct.new(:trips, :options)
+    include ActionView::Helpers::AssetTagHelper
+    include ActionView::Helpers::OutputSafetyHelper
+    include TripsHelper
     include Rails.application.routes.url_helpers
+
+    attr_writer :output_buffer
 
     def build
       Atom::Feed.new do |feed|
@@ -37,6 +43,7 @@ class FeedController < ApplicationController
             entry.published = trip.created_at
             entry.links << Atom::Link.new(href: trip.url, rel: :alternate, type: 'text/html')
             entry.categories << Atom::Category.new(label: trip.category, term: trip.category)
+            entry.summary = build_entry_summary(trip)
           end
         end
       end
@@ -50,6 +57,26 @@ class FeedController < ApplicationController
         end
       end
       updated
+    end
+
+    def build_entry_summary(trip)
+      out = content_tag(:p) do
+        out2 = []
+        out2 << 'Category: '
+        out2 << trip.category
+        out2 << tag(:br)
+        out2 << 'Dates: '
+        out2 << trip_period(trip)
+        out2 << tag(:br)
+        out2 << content_tag(:a, trip.url, href: trip.url)
+        safe_join(out2, "\n")
+      end
+      xhtml = Nokogiri::HTML(out).at_xpath('//html/body/*').to_xhtml
+      Atom::Content::Xhtml.new(xhtml)
+    end
+
+    def output_buffer
+      @output_buffer ||= '' # needed by content_tag
     end
 
     def self_url
