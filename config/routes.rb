@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'feed', to: 'feed#show', as: :feed
   get 'calendar', to: 'calendar#show', as: :calendar
 
+  get '/signin', to: 'sessions#new', as: :sign_in
   post '/auth/:provider/callback', to: 'sessions#create' # no name cos it should never be referenced from app code
-  get '/auth/signout', to: 'sessions#destroy', as: :sign_out
+  get '/signout', to: 'sessions#destroy', as: :sign_out
 end

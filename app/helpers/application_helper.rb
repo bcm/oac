@@ -6,7 +6,7 @@ module ApplicationHelper
     URI.escape(url, URI_ESCAPE_URL_REGEX)
   end
 
-  def sign_in_path(provider)
-    "/auth/#{provider}"
+  def auth_path(provider)
+    "/auth/#{provider}/callback.json"
   end
 end

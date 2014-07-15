@@ -1,10 +1,16 @@
 class SessionsController < ApplicationController
-  skip_before_action :verify_authenticity_token, :resume_session, only: :create
+  skip_before_action :resume_session, :verify_authenticity_token, only: :create
+
+  respond_to :json, only: :create
+
+  def new
+    redirect_to(root_path) if signed_in?
+  end
 
   def create
     user = User.find_or_create_from_auth_hash!(auth_hash)
     begin_session(user)
-    redirect_to(root_path)
+    render json: {status: 'success'}
   end
 
   def destroy

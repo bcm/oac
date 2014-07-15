@@ -5,11 +5,15 @@
     <title>Outdoor Adventure Club Trip Calendar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag "application", media: "all" %>
     <%= favicon_link_tag 'favicon.ico' %>
     <%= csrf_meta_tags %>
+    <% if signed_in? %>
+      <%= tag(:meta, name: 'oac:identity', content: current_user.email) %>
+    <% end %>
   </head>
   <body role="document">
+    <div id="fb-root"></div>
     <nav class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -26,12 +30,14 @@
             <% if signed_in? %>
               <p class="navbar-text"><%= current_user.email %></p>
               <ul class="nav navbar-nav">
-                <li><%= link_to 'Sign out', sign_out_path %></li>
+                <li><%= link_to 'Sign out', sign_out_path, id: 'signout' %></li>
               </ul>
             <% else %>
-              <ul class="nav navbar-nav">
-                <li><%= link_to 'Sign up or sign in', sign_in_path(:developer) %></li>
-              </ul>
+              <% unless current_page?(sign_in_path) %>
+                <ul class="nav navbar-nav">
+                  <li><%= link_to 'Sign up or sign in', sign_in_path %></li>
+                </ul>
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -40,6 +46,6 @@
     <div id="main" class="container" role="main">
       <%= yield %>
     </div>
-    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag "application" %>
   </body>
 </html>

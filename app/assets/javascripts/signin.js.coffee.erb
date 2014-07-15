@@ -1,0 +1,29 @@
+<%
+  environment.context_class.instance_eval { include ApplicationHelper }
+  environment.context_class.instance_eval { include Rails.application.routes.url_helpers }
+%>
+
+jQuery ->
+  $(document).on 'click', '#fb-signin', (e) ->
+    e.preventDefault()
+    FB.login (response) ->
+      if response.status is 'connected' or response.status is 'not_authorized'
+        req = $.post('<%= auth_path(:facebook) %>', {signed_request: response.authResponse.signedRequest}, 'json')
+        req.done ->
+          window.location.href = '<%= root_path %>'
+        req.fail ->
+          console.log 'Signin failed'
+      else
+        console.log 'FB login canceled or failed'
+    , scope: 'email'
+    false
+
+  $(document).on 'click', '#signout', (e) ->
+    e.preventDefault()
+    FB.logout (response) ->
+      req = $.get('<%= sign_out_path %>')
+      req.done ->
+        window.location.href = '/'
+      req.fail ->
+        console.log 'Signout failed'
+    false
