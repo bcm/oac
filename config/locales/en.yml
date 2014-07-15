@@ -21,3 +21,21 @@
 
 en:
   hello: "Hello world"
+
+en:
+  models:
+    trip:
+      categories:
+        hiking: 'Hiking'
+        backpacking: 'Backpacking'
+        climbing: 'Rock Climbing'
+        kayaking: 'Kayaking'
+        camping: 'Camping'
+        rafting: 'Whitewater Rafting'
+      category_abbreviations:
+        hiking: 'H'
+        backpacking: 'B'
+        climbing: 'RC'
+        kayaking: 'K'
+        camping: 'C'
+        rafting: 'WR'

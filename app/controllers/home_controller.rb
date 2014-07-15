@@ -11,7 +11,7 @@ class HomeController < ApplicationController
     trips = Trip.in_period(*period)
     defaults = (period.first..period.last).each_with_object({}) { |date, m| m[date] = [] }
     @trips = trips.each_with_object(defaults) do |trip, m|
-      (trip.starts_on..trip.ends_on).each { |date| m[date] << trip }
+      (trip.starts_on..trip.ends_on).each { |date| m[date] ||= []; m[date] << trip }
     end
   end
 end

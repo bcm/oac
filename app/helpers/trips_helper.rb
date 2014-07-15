@@ -8,12 +8,12 @@ module TripsHelper
       html: true,
       placement: 'auto'
     }
-    button_tag(class: "btn btn-link", data: data) do
+    button_tag(class: "btn btn-link btn-xs", data: data) do
       out = []
       out << content_tag(:span, class: "badge badge-#{trip.category}") do
-        trip_category(trip).slice(0, 1)
+        t(trip.category, scope: 'models.trip.category_abbreviations')
       end
-      out << truncate(trip.shortname, length: 10)
+      out << truncate(trip.shortname, length: 16)
       safe_join(out, "\n")
     end
   end
@@ -28,7 +28,9 @@ module TripsHelper
       raw('Details and signup ' + fa_icon('external-link'))
     end
     out << content_tag(:span, class: 'pull-right') do
-      content_tag(:span, trip_category(trip), class: "label label-#{trip.category}")
+      content_tag(:span, class: "label label-#{trip.category}") do
+        t(trip.category, scope: 'models.trip.categories')
+      end
     end
     # don't safe_join so that the output will be escaped - the popover markup requires this
     out.join("\n")
@@ -49,9 +51,5 @@ module TripsHelper
       out << trip.ends_on.strftime("%b %e")
     end
     out.join('')
-  end
-
-  def trip_category(trip)
-    trip.category.to_s.capitalize
   end
 end
