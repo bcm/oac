@@ -22,6 +22,18 @@
           <%= link_to 'Outdoor Adventure Club Trip Calendar', root_path, class: 'navbar-brand' %>
         </div>
         <div class="collapse navbar-collapse" id="navbar-controls">
+          <div class="navbar-right">
+            <% if signed_in? %>
+              <p class="navbar-text"><%= current_user.email %></p>
+              <ul class="nav navbar-nav">
+                <li><%= link_to 'Sign out', sign_out_path %></li>
+              </ul>
+            <% else %>
+              <ul class="nav navbar-nav">
+                <li><%= link_to 'Sign up or sign in', sign_in_path(:developer) %></li>
+              </ul>
+            <% end %>
+          </div>
         </div>
       </div>
     </nav>
