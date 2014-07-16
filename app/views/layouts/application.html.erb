@@ -8,6 +8,7 @@
     <%= stylesheet_link_tag "application", media: "all" %>
     <%= favicon_link_tag 'favicon.ico' %>
     <%= csrf_meta_tags %>
+    <%= tag(:meta, property: 'fb:app_id', content: Rails.application.secrets.facebook_app_id) %>
     <% if signed_in? %>
       <%= tag(:meta, name: 'oac:identity', content: current_user.email) %>
     <% end %>

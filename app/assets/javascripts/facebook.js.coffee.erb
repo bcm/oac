@@ -5,7 +5,7 @@
 
 window.fbAsyncInit = ->
   FB.init
-    apiKey: '<%= Rails.application.secrets.facebook_app_id %>'
+    apiKey: $("meta[property='fb:app_id']").first().attr('content')
     cookie: true
     xfbml: false
     version: 'v2.0'
@@ -26,4 +26,6 @@ fbLoader = (d, s, id) ->
   js.id = id
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=652000964881908&version=v2.0"
   fjs.parentNode.insertBefore(js, fjs)
-fbLoader(document, 'script', 'facebook-jssdk')
+
+jQuery ->
+  fbLoader(document, 'script', 'facebook-jssdk')
