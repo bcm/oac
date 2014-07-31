@@ -1,3 +1,13 @@
-<p>By signing in you are able to personalize the calendar to your tastes; we'll remember those preferences the next time you visit the site. We won't ask for any information other than your e-mail address and we won't publish anything to any external sites without asking you first. And we definitely won't spam you.</p>
+<div class="col-md-6">
+  <p>By signing in you are able to personalize the calendar to your tastes; we'll remember those preferences the next time you visit the site.</p>
+  <p>We won't ask for any information other than your e-mail address and we won't publish anything to any external sites without asking you first. And we definitely won't spam you.</p>
+</div>
 
-<%= button_tag 'Sign in with Facebook', class: 'btn btn-primary', id: 'fb-signin' %>
+<div class="col-md-6">
+  <div class="button-group">
+    <%= link_to auth_path(:facebook), class: 'btn btn-primary' do %>
+      <%= image_tag 'logos/facebook-white-29.png', alt: '', size: '29x29', style: 'margin-right:5px' %>
+      Sign in with Facebook
+    <% end %>
+  </div>
+</div>
