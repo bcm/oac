@@ -1,9 +1,9 @@
 oac-start-services() {
-  brew services start postgres
+  launchctl load -w -F /usr/local/opt/postgresql/homebrew.mxcl.postgresql.plist
 }
 
 oac-stop-services() {
-  brew services stop postgres
+  launchctl unload /usr/local/opt/postgresql/homebrew.mxcl.postgresql.plist
 }
 
 oac-dump-db() {
